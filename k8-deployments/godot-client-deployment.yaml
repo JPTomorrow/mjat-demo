@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: godot-client
+  labels:
+    app: godot-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: godot-client
+  template:
+    metadata:
+      labels:
+        app: godot-client
+    spec:
+      containers:
+      - name: godot-client
+        image: jpmorrow/mjat-demo-client:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
