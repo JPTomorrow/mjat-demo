@@ -1,6 +1,6 @@
 # build image
 ```
-docker build -t jpmorrow/mjat-demo-client .
+docker build -t jpmorrow/mjat-demo-client . --no-cache
 ``` 
 
 ## Godot Game Files

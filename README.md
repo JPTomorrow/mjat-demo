@@ -22,8 +22,7 @@ kubectl rollout restart deployment
 - NOTE: RUN THESE IN SEPARATE TERMINALS
 ```
 kubectl port-forward service/godot-client 8080:80
-```
 
-```
+
 kubectl port-forward service/godot-server 8082:80
 ```

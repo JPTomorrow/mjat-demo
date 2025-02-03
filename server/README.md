@@ -4,5 +4,5 @@
 
 ## build image
 ```
-docker build -t jpmorrow/mjat-demo-server .
+docker build -t jpmorrow/mjat-demo-server . --no-cache
 ```

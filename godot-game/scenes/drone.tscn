@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfssigoh2hb57"]
+
+[ext_resource type="PackedScene" uid="uid://dgyn1qupk264l" path="res://models/uploads_files_800272_MQ-9.fbx" id="1_dil0n"]
+[ext_resource type="Script" uid="uid://da7ehuhdakkic" path="res://scenes/drone.gd" id="2_1r4ts"]
+[ext_resource type="Script" uid="uid://byold0igp2kob" path="res://scenes/cam.gd" id="2_knnud"]
+
+[node name="drone" node_paths=PackedStringArray("ui_layer", "go_button", "stop_button", "self_destruct", "offline_text") instance=ExtResource("1_dil0n")]
+script = ExtResource("2_1r4ts")
+ui_layer = NodePath("ui")
+go_button = NodePath("ui/ui/go")
+stop_button = NodePath("ui/ui/stop")
+self_destruct = NodePath("ui/ui/self_destruct")
+offline_text = NodePath("ui/ui/dead_text")
+
+[node name="MQ-9" parent="." index="0"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="cam" type="Camera3D" parent="." index="2" node_paths=PackedStringArray("target")]
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 2, 0, 0)
+script = ExtResource("2_knnud")
+target = NodePath("../target")
+
+[node name="target" type="Node3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.142174, 0.157592, 0)
+
+[node name="ui" type="CanvasLayer" parent="." index="4"]
+
+[node name="ui" type="Control" parent="ui" index="0"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="go" type="Button" parent="ui/ui" index="0"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -65.0
+offset_right = 83.0
+offset_bottom = -34.0
+grow_vertical = 0
+text = "GO"
+
+[node name="stop" type="Button" parent="ui/ui" index="1"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 91.0
+offset_top = -66.0
+offset_right = 142.0
+offset_bottom = -35.0
+grow_vertical = 0
+text = "STOP"
+
+[node name="self_destruct" type="Button" parent="ui/ui" index="2"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 182.0
+offset_top = -66.0
+offset_right = 300.0
+offset_bottom = -35.0
+grow_vertical = 0
+text = "SELF DESRUCT"
+
+[node name="dead_text" type="RichTextLabel" parent="ui/ui" index="3"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -138.0
+offset_right = 232.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+text = "[center]DRONE OFFLINE[/center]"

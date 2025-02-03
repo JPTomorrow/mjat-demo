@@ -5,7 +5,7 @@ metadata:
   labels:
     app: godot-client
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: godot-client

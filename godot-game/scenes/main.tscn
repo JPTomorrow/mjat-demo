@@ -1,9 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4rlk0r602hhc"]
+[gd_scene load_steps=7 format=3 uid="uid://c4rlk0r602hhc"]
 
-[ext_resource type="PackedScene" uid="uid://dgyn1qupk264l" path="res://models/uploads_files_800272_MQ-9.fbx" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://d0d8ujp8qtfhh" path="res://scenes/controller.gd" id="1_tbgi4"]
-[ext_resource type="Script" uid="uid://byold0igp2kob" path="res://scenes/cam.gd" id="2_0wfyh"]
-[ext_resource type="Script" uid="uid://da7ehuhdakkic" path="res://scenes/drone.gd" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bmqer40yeo8li" path="res://models/uploads_files_3835558_untitled.fbx" id="3_sugp2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0wfyh"]
@@ -35,23 +32,12 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
 
-[node name="main" type="Node3D" node_paths=PackedStringArray("ping_server_btn", "console")]
+[node name="main" type="Node3D" node_paths=PackedStringArray("ping_server_btn", "print_mp_id_btn", "spawn_btn", "console")]
 script = ExtResource("1_tbgi4")
 ping_server_btn = NodePath("ui/ui/ping")
+print_mp_id_btn = NodePath("ui/ui/print_mp_id")
+spawn_btn = NodePath("ui/ui/spawn_drones")
 console = NodePath("ui/ui/console")
-
-[node name="cam" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.71955, 7.26422, 0)
-script = ExtResource("2_0wfyh")
-target = NodePath("../drone")
-
-[node name="drone" parent="." node_paths=PackedStringArray("go_button", "stop_button", "self_destruct", "offline_text") instance=ExtResource("1_o5qli")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 7.26422, 0)
-script = ExtResource("2_jyhfs")
-go_button = NodePath("../ui/ui/go")
-stop_button = NodePath("../ui/ui/stop")
-self_destruct = NodePath("../ui/ui/self_destruct")
-offline_text = NodePath("../ui/ui/dead_text")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.372712, 0.927947, 0, -0.927947, 0.372712, 0, 4.85629, 3.15878)
@@ -75,30 +61,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="go" type="Button" parent="ui/ui"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = -65.0
-offset_right = 83.0
-offset_bottom = -34.0
-grow_vertical = 0
-text = "GO"
-
-[node name="stop" type="Button" parent="ui/ui"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 91.0
-offset_top = -66.0
-offset_right = 142.0
-offset_bottom = -35.0
-grow_vertical = 0
-text = "STOP"
+mouse_filter = 2
 
 [node name="ping" type="Button" parent="ui/ui"]
 layout_mode = 1
@@ -112,35 +75,17 @@ offset_bottom = -75.0
 grow_vertical = 0
 text = "PING SERVER"
 
-[node name="self_destruct" type="Button" parent="ui/ui"]
+[node name="spawn_drones" type="Button" parent="ui/ui"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 182.0
-offset_top = -66.0
-offset_right = 300.0
-offset_bottom = -35.0
+offset_left = 37.0
+offset_top = -279.0
+offset_right = 146.0
+offset_bottom = -248.0
 grow_vertical = 0
-text = "SELF DESRUCT"
-
-[node name="dead_text" type="RichTextLabel" parent="ui/ui"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -233.0
-offset_top = -138.0
-offset_right = 232.0
-offset_bottom = 138.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 96
-bbcode_enabled = true
-text = "[center]DRONE OFFLINE[/center]"
+text = "SPAWN DRONES"
 
 [node name="console" type="RichTextLabel" parent="ui/ui"]
 layout_mode = 1
@@ -155,4 +100,14 @@ grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_tbgi4")
 
-[editable path="drone"]
+[node name="print_mp_id" type="Button" parent="ui/ui"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 181.0
+offset_top = -105.0
+offset_right = 299.0
+offset_bottom = -74.0
+grow_vertical = 0
+text = "PRINT MP ID"

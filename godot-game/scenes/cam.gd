@@ -17,10 +17,36 @@ extends Camera3D
 var pitch := 0.0  # rotation around the x-axis
 var yaw := 0.0    # rotation around the y-axis
 
+var control_timer: Timer;
+
 func _ready() -> void:
+	#control_timer = 	Timer.new()
+	#control_timer.wait_time = 3
+	#control_timer.timeout.connect(_try_take_drone_control)
+	#control_timer.one_shot = false
+	#add_child(control_timer)
+	#control_timer.start()
+	_try_take_drone_control()
 	update_camera_transform()
 	
+var owned: bool = false
+func _try_take_drone_control():
+	#print("mp id: ", multiplayer.get_unique_id(), 
+		  #" authority_id: ", get_multiplayer_authority(), 
+		  #" has auth: ", str(is_multiplayer_authority()))
+	
+	if is_multiplayer_authority():
+		print("This is my cam -> ", str(multiplayer.get_unique_id()))
+		current = true  # Activate only if the client owns this camera
+		owned = true
+		#control_timer.stop()
+		#control_timer.queue_free()
+	else:
+		current = false
+		
 func _process(_delta: float) -> void:
+	#if not owned:
+		#_try_take_drone_control()
 	update_camera_transform()
 
 func _input(event: InputEvent) -> void:
