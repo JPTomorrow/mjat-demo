@@ -72,8 +72,8 @@ func _explode_drone():
 	
 	explosion.position = position
 	explosion.explode()
-	
 	play_explosion_sound()
+	
 	for c in get_children():
 		if c.name == "cam" or c.name == "target" or c.name == "ui": continue
 		c.queue_free()

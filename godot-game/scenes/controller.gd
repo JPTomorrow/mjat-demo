@@ -31,7 +31,6 @@ func start_server() -> void:
 	print("starting server")
 	multiplayer.peer_connected.connect(_on_client_connected)
 	multiplayer.peer_disconnected.connect(_on_client_disconnected)
-	# start server
 	var server = WebSocketMultiplayerPeer.new()
 	server.create_server(internal_server_port) # listen internally on 80
 	multiplayer.multiplayer_peer = server
@@ -41,7 +40,6 @@ func start_client() -> void:
 	print("joining as client")
 	multiplayer.connected_to_server.connect(_connected_to_server)
 	multiplayer.server_disconnected.connect(_disconnected_from_server)
-	# create client
 	var client = WebSocketMultiplayerPeer.new()
 	var port = external_server_port
 	var ws_url = "ws://" + server_address + ":" + str(port)
@@ -72,7 +70,6 @@ func _on_client_connected(client_id) -> void:
 var drone_offset = 2
 @rpc("authority", "call_local", "reliable")
 func create_drone(client_id):
-	# make drone and assign it to new client
 	var player: Drone = dronePrefab.instantiate()
 	player.name = str(client_id)
 	player.set_multiplayer_authority(client_id)
@@ -95,8 +92,8 @@ func _on_client_disconnected(client_id) -> void:
 	print("client disconnected: ", str(client_id))
 
 func _connected_to_server() -> void:
-	pass
 	#print("connected to server")
+	pass
 	
 func _disconnected_from_server() -> void:
 	print("disconnected from server")
